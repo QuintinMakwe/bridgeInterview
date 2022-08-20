@@ -12,7 +12,7 @@ const TESTNET_DEPLOYER =
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  defaultNetwork: "localhost",
+  defaultNetwork: "testnet",
   solidity: {
     version: "0.8.0",
     settings: {
@@ -40,7 +40,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: process.env.BSCSCAN_API_KEY,
+    apiKey: "ZW18QNQ6DVMA73T6Z7DNHS65W8F4N4T91U",
   },
   mocha: {
     timeout: 50000,

@@ -3,7 +3,7 @@ const { ethers } = hre;
 const { BigNumber } = require("ethers");
 
 async function main() {
-  [deployer] = await ethers.getSigners();
+  //   [deployer] = await ethers.getSigners();
 
   const Token = await ethers.getContractFactory("Token");
   const Settings = await ethers.getContractFactory("Settings");
@@ -37,29 +37,59 @@ async function main() {
       bridgepool.address,
       "0x560c6067b94048F92Bd89e44D205c3597A4fe82E"
     );
+
+    if (hre.network.name === "mainnet" || hre.network.name === "testnet") {
+      await hre.run("verify:verify", {
+        address: token.address,
+        constructorArguments: ["Quintin", "QNT"],
+      });
+      await hre.run("verify:verify", {
+        address: controller.address,
+        constructorArguments: [],
+      });
+      await hre.run("verify:verify", {
+        address: registry.address,
+        constructorArguments: [],
+      });
+      await hre.run("verify:verify", {
+        address: settings.address,
+        constructorArguments: [
+          controller.address,
+          "0x560c6067b94048F92Bd89e44D205c3597A4fe82E",
+        ],
+      });
+      await hre.run("verify:verify", {
+        address: feecontroller.address,
+        constructorArguments: [controller.address, settings.address],
+      });
+      await hre.run("verify:verify", {
+        address: deployer.address,
+        constructorArguments: [controller.address],
+      });
+      await hre.run("verify:verify", {
+        address: bridgepool.address,
+        constructorArguments: [controller.address],
+      });
+      await hre.run("verify:verify", {
+        address: bridge.address,
+        constructorArguments: [
+          controller.address,
+          settings.address,
+          registry.address,
+          deployer.address,
+          feecontroller.address,
+          bridgepool.address,
+          "0x560c6067b94048F92Bd89e44D205c3597A4fe82E",
+        ],
+      });
+    } else {
+      console.log(
+        "Contracts deployed to",
+        hre.network.name,
+        "network. Please verify them manually."
+      );
+    }
   }
-  console.log("here are the deployed contracts ", {
-    token: token.address,
-    controller: controller.address,
-    registry: registry.address,
-    settings: settings.address,
-    feecontroller: feecontroller.address,
-    deployer: deployer.address,
-    bridgepool: bridgepool.address,
-    bridge: bridge.address,
-  });
-  //   if (hre.network.name === "mainnet" || hre.network.name === "testnet") {
-  //     await hre.run("verify:verify", {
-  //       address: quidRaise.address,
-  //       constructorArguments: [],
-  //     });
-  //   } else {
-  //     console.log(
-  //       "Contracts deployed to",
-  //       hre.network.name,
-  //       "network. Please verify them manually."
-  //     );
-  //   }
 }
 
 main()
