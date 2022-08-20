@@ -1,0 +1,19 @@
+{
+  "name": "bridgeInterview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/QuintinMakwe/bridgeInterview.git",
+  "author": "Quintin <quintinmakwe@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@nomiclabs/hardhat-truffle5": "^2.0.6",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "hardhat": "^2.10.2"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.1.1",
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.1"
+  }
+}
