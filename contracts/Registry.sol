@@ -350,6 +350,7 @@ contract Registry is Ownable {
 
     function splitSignature(bytes memory signature)
         internal
+        pure
         returns (
             bytes32 r,
             bytes32 s,

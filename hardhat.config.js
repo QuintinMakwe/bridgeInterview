@@ -5,7 +5,8 @@ require("@nomiclabs/hardhat-truffle5");
 
 const { utils } = require("ethers");
 
-const TESTNET_DEPLOYER = "";
+const TESTNET_DEPLOYER =
+  "43dfb9572c98039d5ffe314476cdcbe61a242e34b1261a4633b50880222d6cc8";
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -13,14 +14,12 @@ const TESTNET_DEPLOYER = "";
 module.exports = {
   defaultNetwork: "localhost",
   solidity: {
-    compilers: [
-      {
-        version: "0.8.0",
+    version: "0.8.0",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
       },
-    ],
-    optimizer: {
-      enabled: true,
-      runs: 200,
     },
   },
   networks: {
