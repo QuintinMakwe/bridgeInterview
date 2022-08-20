@@ -5,8 +5,7 @@ require("@nomiclabs/hardhat-truffle5");
 
 const { utils } = require("ethers");
 
-const TESTNET_DEPLOYER =
-  "43dfb9572c98039d5ffe314476cdcbe61a242e34b1261a4633b50880222d6cc8";
+const TESTNET_DEPLOYER = process.env.DEPLOYER;
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -40,7 +39,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: "ZW18QNQ6DVMA73T6Z7DNHS65W8F4N4T91U",
+    apiKey: process.env.ETHERKEY,
   },
   mocha: {
     timeout: 50000,
